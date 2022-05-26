@@ -1,4 +1,4 @@
-#GildedRose-Refactoring-Kata Java solution by Ruben Mennes
+# GildedRose-Refactoring-Kata Java solution by Ruben Mennes
 
 ## How to run
 
