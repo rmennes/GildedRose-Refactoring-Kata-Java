@@ -7,7 +7,7 @@ class GildedRose {
 
     private static final HandlerFactory handlerFactory = new HandlerFactory();
 
-    Item[] items;
+    final Item[] items;
 
     public GildedRose(Item[] items) {
         this.items = items;

@@ -4,7 +4,7 @@ import com.gildedrose.Item;
 
 public class ConjuredItemHandler implements ItemHandler {
 
-  private ItemHandler itemHandler;
+  private final ItemHandler itemHandler;
 
   public ConjuredItemHandler(ItemHandler itemHandler) {
     this.itemHandler = itemHandler;

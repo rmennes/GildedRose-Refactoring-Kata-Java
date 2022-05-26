@@ -46,10 +46,11 @@ class HandlerFactoryTest {
     assertThat(itemHandler).isExactlyInstanceOf(AgedBrieHandler.class);
   }
 
-  @Test
-  void namesStartWithSulfurasUseSulfurasHandler() {
+  @ParameterizedTest
+  @ValueSource(strings = {"Sulfuras, Hand of Ragnaros", "Sulfuras"})
+  void namesStartWithSulfurasUseSulfurasHandler(String itemName) {
     //When
-    ItemHandler itemHandler = handlerFactory.getItemHandlerForItem("Sulfuras");
+    ItemHandler itemHandler = handlerFactory.getItemHandlerForItem(itemName);
 
     //Then
     assertThat(itemHandler).isExactlyInstanceOf(SulfurasHandler.class);
@@ -88,10 +89,11 @@ class HandlerFactoryTest {
       assertConjuredHandlerWithChildHandler(AgedBrieHandler.class, itemHandler);
     }
 
-    @Test
-    void namesStartWithSulfurasUseSulfurasHandler() {
+    @ParameterizedTest
+    @ValueSource(strings = {"Conjured Sulfuras, Hand of Ragnaros", "Conjured Sulfuras"})
+    void namesStartWithSulfurasUseSulfurasHandler(String itemName) {
       //When
-      ItemHandler itemHandler = handlerFactory.getItemHandlerForItem("Conjured Sulfuras");
+      ItemHandler itemHandler = handlerFactory.getItemHandlerForItem(itemName);
 
       //Then
       assertConjuredHandlerWithChildHandler(SulfurasHandler.class, itemHandler);

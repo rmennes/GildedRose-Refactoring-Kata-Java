@@ -20,9 +20,8 @@ public class HandlerFactory {
   private static final ItemHandler DEFAULT_ITEM_HANDLER = new RegularItemHandler();
 
   public ItemHandler getItemHandlerForItem(String itemName) {
-    boolean conjuredItem = false;
-    if (itemName.startsWith("Conjured")) {
-      conjuredItem = true;
+    final boolean conjuredItem = itemName.startsWith("Conjured");
+    if (conjuredItem) {
       itemName = itemName.substring(8).stripLeading();
     }
 
