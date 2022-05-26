@@ -24,12 +24,12 @@ public class StepDefinitions {
     }
 
     @Then("The item should have a quality of {int}")
-    public void expectQuality(int quality) {
+    public void expected_item_quality(int quality) {
         assertEquals(quality, app.items[0].quality);
     }
 
     @Then("the item should have a sellIn of {int}")
-    public void expectSellIn(int sellIn) {
+    public void expected_item_sellIn(int sellIn) {
         assertEquals(sellIn, app.items[0].sellIn);
     }
 }
