@@ -6,15 +6,19 @@ import com.gildedrose.handlers.ConjuredItemHandler;
 import com.gildedrose.handlers.ItemHandler;
 import com.gildedrose.handlers.RegularItemHandler;
 import com.gildedrose.handlers.SulfurasHandler;
-import java.util.Map;
+import java.util.List;
 import java.util.Optional;
 
 public class HandlerFactory {
 
-  private static final Map<String, ItemHandler> SPECIAL_ITEM_HANDLERS = Map.of(
-        "Aged Brie", new AgedBrieHandler(),
-        "Sulfuras", new SulfurasHandler(),
-        "Backstage passes", new BackstagePassesHandler()
+  private record NamedItemHanlder(String name, ItemHandler itemHandler) {
+
+  }
+
+  private static final List<NamedItemHanlder> SPECIAL_ITEM_HANDLERS = List.of(
+        new NamedItemHanlder("Aged Brie", new AgedBrieHandler()),
+        new NamedItemHanlder("Sulfuras", new SulfurasHandler()),
+        new NamedItemHanlder("Backstage passes", new BackstagePassesHandler())
   );
 
   private static final ItemHandler DEFAULT_ITEM_HANDLER = new RegularItemHandler();
@@ -33,8 +37,8 @@ public class HandlerFactory {
   }
 
   private Optional<ItemHandler> findSpecialItemHandler(String name) {
-    return SPECIAL_ITEM_HANDLERS.entrySet().stream()
-        .filter(e -> name.startsWith(e.getKey())).map(Map.Entry::getValue).findFirst();
+    return SPECIAL_ITEM_HANDLERS.stream()
+        .filter(e -> name.startsWith(e.name())).map(NamedItemHanlder::itemHandler).findFirst();
   }
 
   private ItemHandler conjure(ItemHandler itemHandler) {
